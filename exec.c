@@ -6,7 +6,7 @@
 /*   By: tsishika <tsishika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 13:54:05 by tsishika          #+#    #+#             */
-/*   Updated: 2023/07/21 14:38:47 by tsishika         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:34 by tsishika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void	exec(int pipefd[2], char **argv, char **environ)
 	int		second_pid;
 	int		status;
 
-	first_pid = first_exec(pipefd, argv, environ);
+	first_pid = front_exec(pipefd, argv, environ);
 	judge_error(first_pid);
-	second_pid = second_exec(pipefd, argv, environ);
+	second_pid = back_exec(pipefd, argv, environ);
 	judge_error(second_pid);
-	judge_error(pipefd[0]);
-	judge_error(pipefd[1]);
+	judge_error(close(pipefd[0]));
+	judge_error(close(pipefd[1]));
 	judge_error(waitpid(first_pid, &status, 0));
 	judge_error(waitpid(second_pid, &status, 0));
 	exit(WEXITSTATUS(status));
 }
 
-int	first_exec(int pipefd[2], char **argv, char **environ)
+int	front_exec(int pipefd[2], char **argv, char **environ)
 {
 	pid_t	pid;
 	int		file_fd;
@@ -53,7 +53,7 @@ int	first_exec(int pipefd[2], char **argv, char **environ)
 	return (pid);
 }
 
-int	second_exec(int pipefd[2], char **argv, char **environ)
+int	back_exec(int pipefd[2], char **argv, char **environ)
 {
 	pid_t	pid;
 	int		file_fd;

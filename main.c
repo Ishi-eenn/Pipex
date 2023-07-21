@@ -6,7 +6,7 @@
 /*   By: tsishika <tsishika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 13:54:11 by tsishika          #+#    #+#             */
-/*   Updated: 2023/07/21 14:38:59 by tsishika         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:59:47 by tsishika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	extern char	**environ;
 
 	arg_error(argc);
-	if (pipe(pipefd) != -1)
+	if (pipe(pipefd) == -1)
 	{
 		perror("Error");
 		exit(1);
