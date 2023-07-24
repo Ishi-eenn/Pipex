@@ -1,4 +1,7 @@
 .vscode
+.DS_STORE
 file1
 file2
 file3
+*.o
+pipex
