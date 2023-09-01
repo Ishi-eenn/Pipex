@@ -6,7 +6,7 @@
 /*   By: tsishika <tsishika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 13:54:00 by tsishika          #+#    #+#             */
-/*   Updated: 2023/07/24 11:14:00 by tsishika         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:26:04 by tsishika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,6 @@ void	exit_free_perror(char **free_string_array, char *free_string)
 	if (free_string != NULL)
 		free(free_string);
 	exit(1);
-}
-
-int	ft_strcmp(char *a, char *b)
-{
-	while (1)
-	{
-		if (*a == '\0' && *b == '\0')
-			return (1);
-		if (*a != *b)
-			return (0);
-		a++;
-		b++;
-	}
 }
 
 void	exit_free_strerror(char *message, char *cmd_or_file,
