@@ -6,7 +6,7 @@
 /*   By: tsishika <tsishika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 13:54:05 by tsishika          #+#    #+#             */
-/*   Updated: 2023/08/13 21:12:10 by tsishika         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:19:22 by tsishika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	front_exec(int pipefd[2], char **argv, char **environ)
 		judge_error(close(pipefd[0]));
 		is_read(argv[1]);
 		file_fd = open_file(argv[1]);
+		// file_fd = 0;
 		judge_error(file_fd);
 		judge_error(dup2(file_fd, 0));
 		judge_error(dup2(pipefd[1], 1));
@@ -70,6 +71,7 @@ int	back_exec(int pipefd[2], char **argv, char **environ)
 		if (!(is_write(argv[4])))
 			exit_free_strerror("permission denied", argv[4], NULL, NULL);
 		file_fd = open_or_create_file(argv[4]);
+		// file_fd = 0;
 		judge_error(file_fd);
 		judge_error(dup2(pipefd[0], 0));
 		judge_error(dup2(file_fd, 1));
